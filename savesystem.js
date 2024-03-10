@@ -3,13 +3,15 @@
 // Example usage :
 // SAVE
 // var save = new SaveData();
+// save.name = "bizzygwen"
 // save.scores.push({name:"level0", score:100});
 // saveDataObject(save);
 // LOAD
 // var loadData = loadDataObject();
+// print(loadData.name + " " + loadData.something);
 // you can also use the other functions to use your own
 
-// Important! If you reset IOP, don't forget to load the correct modules
+// IMPORTANT! If you reset IOP, don't forget to load the correct modules
 // Example: IOP.loadDefaultModule(IOP.memcard);
 
 // Can modify these names
@@ -20,17 +22,18 @@ const mainDataFile = "game.dat";
 class SaveData {
   saveVersion = 1;
   name = "BizzyGwen";
-  scores = [];
+  scores = [{ name: "level-", score: 350 }];
 }
 
 // save devices (probably can also add hdd and maybe samba?)
 const saveDevices = ["mc0:/", "mc1:/", "mass:/"];
 
 function saveDataObject(save, saveFilePath) {
-  var saveFilePath = "";
-  if (typeof saveFilePath !== "undefined") {
+  /* var saveFilePath = "";
+  if (typeof saveFilePath === "undefined") {
     saveFilePath = getSaveFilePath();
-  }
+  } */
+  saveFilePath = getSaveFilePath();
   var jsonString = JSON.stringify(save);
   var saveAttempt = saveData(saveFilePath, jsonString);
   return saveAttempt;
@@ -46,7 +49,10 @@ function loadDataObject() {
 
     loadAttempt = loadData(saveFilePath);
   }
-  return loadAttempt;
+
+  var loadedData = Object.assign(new SaveData(), JSON.parse(loadAttempt));
+
+  return loadedData;
 }
 
 function deleteDataObject() {
