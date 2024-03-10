@@ -9,6 +9,9 @@
 // var loadData = loadDataObject();
 // you can also use the other functions to use your own
 
+// Important! If you reset IOP, don't forget to load the correct modules
+// Example: IOP.loadDefaultModule(IOP.memcard);
+
 // Can modify these names
 const mainFolder = "BIZZYGAME";
 const mainDataFile = "game.dat";
