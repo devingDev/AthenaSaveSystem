@@ -28,12 +28,11 @@ class SaveData {
 // save devices (probably can also add hdd and maybe samba?)
 const saveDevices = ["mc0:/", "mc1:/", "mass:/"];
 
-function saveDataObject(save, saveFilePath) {
-  /* var saveFilePath = "";
-  if (typeof saveFilePath === "undefined") {
+function saveDataObject(save, saveFilePathCustom) {
+  var saveFilePath = saveFilePathCustom;
+  if (typeof saveFilePathCustom === "undefined") {
     saveFilePath = getSaveFilePath();
-  } */
-  saveFilePath = getSaveFilePath();
+  }
   var jsonString = JSON.stringify(save);
   var saveAttempt = saveData(saveFilePath, jsonString);
   return saveAttempt;
