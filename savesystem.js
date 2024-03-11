@@ -40,7 +40,7 @@ function saveDataObject(save, saveFilePathCustom) {
 
 function loadDataObject() {
   var saveFilePath = getSaveFilePath();
-  loadAttempt = loadData(saveFilePath);
+  var loadAttempt = loadData(saveFilePath);
   if (loadAttempt.startsWith("ERROR#") || loadAttempt.length <= 0) {
     // create empty savedata and save it:
     var save = new SaveData();
